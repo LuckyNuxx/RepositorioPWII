@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trabalho - Carrinho de Compras</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topo">
+    <h1>Programação para Internet II</h1>
+    <p>Miniloja - Carrinho, Estoque e Cupons</p>
+  </header>
+
+  <main>
+    <section class="secao" aria-labelledby="titulo-estoque">
+      <div class="cabecalho-estoque">
+        <h2 id="titulo-estoque">Produtos Disponíveis</h2>
+        <div class="busca">
+          <label for="input-busca">Buscar produto:</label>
+          <input type="text" id="input-busca" placeholder="Digite o nome..." oninput="filtrarProdutos()">
+        </div>
+      </div>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Descrição</th>
+            <th>Preço (R$)</th>
+            <th>Estoque</th>
+          </tr>
+        </thead>
+        <tbody id="tabela-estoque"></tbody>
+      </table>
+    </section>
+
+    <section class="secao" aria-labelledby="titulo-add">
+      <h2 id="titulo-add">Adicionar ao Carrinho</h2>
+      <div class="form-linha">
+        <label for="input-codigo">Código:</label>
+        <input type="number" id="input-codigo" min="1">
+
+        <label for="input-qtd">Quantidade:</label>
+        <input type="number" id="input-qtd" value="1" min="1">
+
+        <button onclick="adicionarAoCarrinho()">Incluir</button>
+      </div>
+      <p id="msg-carrinho" class="mensagem" role="status"></p>
+    </section>
+
+    <section class="secao" aria-labelledby="titulo-carrinho">
+      <h2 id="titulo-carrinho">Meu Carrinho</h2>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Produto</th>
+            <th>Qtd</th>
+            <th>Preço Unit.</th>
+            <th>Subtotal</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tbody id="tabela-carrinho">
+          <tr><td colspan="5" align="center">Carrinho vazio</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="secao" aria-labelledby="titulo-checkout">
+      <h2 id="titulo-checkout">Finalizar Pedido</h2>
+      <div class="form-linha">
+        <label for="input-cupom">Cupom:</label>
+        <input type="text" id="input-cupom">
+        <button onclick="aplicarCupom()">Aplicar</button>
+      </div>
+      <p id="msg-cupom" class="mensagem" role="status"></p>
+
+      <button class="btn-finalizar" onclick="finalizarCompra()">Finalizar Compra</button>
+      <div id="resultado-total"></div>
+    </section>
+
+    <section class="secao admin" aria-labelledby="titulo-admin">
+      <h2 id="titulo-admin">Área do Admin - Cupons</h2>
+      <div class="form-linha">
+        <label for="novo-cupom-cod">Código:</label>
+        <input type="text" id="novo-cupom-cod" placeholder="Código">
+
+        <label for="novo-cupom-desc">Desconto %:</label>
+        <input type="number" id="novo-cupom-desc" placeholder="1 a 100" min="1" max="100">
+
+        <button onclick="salvarCupom()">Criar Cupom</button>
+      </div>
+      <p id="msg-admin" class="mensagem" role="status"></p>
+
+      <table border="1" style="margin-top: 15px;">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Desconto</th>
+            <th>Excluir</th>
+          </tr>
+        </thead>
+        <tbody id="tabela-cupons"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
